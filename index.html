@@ -516,7 +516,7 @@
     .scroll-top:hover { border-color: var(--violet); color: var(--violet); }
 
     /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal { opacity: 1; transform: none; }
     .reveal.in { opacity: 1; transform: none; }
 
     /* ── FOCUS ── */
@@ -1159,9 +1159,9 @@ tb.addEventListener('click',()=>{
   localStorage.setItem('fk-theme',l?'light':'dark');
 });
 
-// ── SCROLL REVEAL ──
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+// ── SCROLL REVEAL (subtle fade-in on scroll) ──
+const revealEls = document.querySelectorAll('.reveal');
+revealEls.forEach(el => el.classList.add('in'));
 
 // ── PROJECT FILTER ──
 const fpills=document.querySelectorAll('.fpill'),pcards=document.querySelectorAll('.proj-card');
